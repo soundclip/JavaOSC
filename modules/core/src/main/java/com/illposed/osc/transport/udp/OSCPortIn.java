@@ -71,6 +71,7 @@ public class OSCPortIn extends OSCPort implements Runnable {
 	{
 		super(local, remote);
 
+		this.listening = false;
 		this.parserFactory = parserFactory;
 		this.dispatcher = new OSCPacketDispatcher();
 		// NOTE We do this, even though it is against the OSC (1.0) specification,
@@ -182,7 +183,7 @@ public class OSCPortIn extends OSCPort implements Runnable {
 	}
 
 	/**
-	 * Am I listening for packets?
+	 * Is this port listening for packets?
 	 * @return true if this port is in listening mode
 	 */
 	public boolean isListening() {
