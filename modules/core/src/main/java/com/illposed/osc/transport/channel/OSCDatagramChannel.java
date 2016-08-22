@@ -43,8 +43,9 @@ public class OSCDatagramChannel extends SelectableChannel {
 	public <C extends ByteChannel, InterruptibleChannel> OSCDatagramChannel(
 			final DatagramChannel underlyingChannel,
 			final OSCParserFactory parserFactory,
-			final OSCSerializerFactory serializerFactory/*,
-			final ByteBuffer buffer*/)
+			final OSCSerializerFactory serializerFactory
+			//,final ByteBuffer buffer
+			)
 	{
 //		super(underlyingChannel.provider());
 
@@ -104,7 +105,7 @@ public class OSCDatagramChannel extends SelectableChannel {
 //					}
 				} else {
 					// convert from OSC byte array -> Java object
-					// FIXME BAAAAAAAD!! - the overflow would happen on the receiving end, up there, not down here!
+					// XXX BAAAAAAAD!! - the overflow would happen on the receiving end, up there, not down here!
 //					do {
 //						try {
 							oscPacket = parser.convert(buffer);
@@ -310,7 +311,8 @@ public class OSCDatagramChannel extends SelectableChannel {
 
 	@Override
 	protected void implCloseChannel() throws IOException {
-		underlyingChannel.close(); // XXX is this ok?
+		// XXX is this ok?
+		underlyingChannel.close();
 	}
 
 	@Override
